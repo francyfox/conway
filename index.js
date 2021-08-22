@@ -1,5 +1,3 @@
-import Cell from './models/Cell.js'
+import RenderInterface from './services/RenderInterface.js'
 
-const cell = new Cell();
-cell.change();
-console.log(cell.getCurrent())
+const render = new RenderInterface();

@@ -1,18 +1,24 @@
-import Cell from "./Cell";
-export default class Board implements Cell
+import Cell from "./Cell.js";
+export default class Board extends Cell
 {
-    constructor(row, column) {
-        this.row = row;
-        this.column = column;
-        this.matrixBoard = [];
+    constructor(M, N) {
+        super();
+        this.matrix = [];
     }
 
-    createBoard() {
-
-        for (let i = 0; i < this.row; i++) {
-            for (let j = 0; j < this.column; j++) {
-
-            }
-        }
+    createMatrixByRandom(M, N) {
+        let i = 0;
+        const RowArray = Array.from({length: M}, () => ++i);
+        // Math.floor(Math.random() * 2)
+        this.matrix = new Array(N).fill(RowArray);
     }
+
+    setMatrix(array) {
+        this.matrix = array;
+    }
+
+    getMatrix() {
+        return this.matrix;
+    }
+
 }

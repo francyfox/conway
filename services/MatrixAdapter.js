@@ -1,9 +1,8 @@
-import Board from "../models/Board";
+import Board from "../models/Board.js";
 
-class MatrixAdapter extends Board
+export default class MatrixAdapter extends Board
 {
     constructor() {
         super();
-        this.matrix = [];
     }
 }

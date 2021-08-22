@@ -11,5 +11,7 @@
     "conway"
   ],
   "author": "francyfox",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+  }
 }

@@ -1,0 +1,32 @@
+import MatrixAdapter from './MatrixAdapter.js'
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+const file = require('../config.json');
+const readline = require('readline');
+
+
+export default class RenderInterface
+{
+    constructor() {
+        this.rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+
+        const matrix = new MatrixAdapter();
+        matrix.setMatrix(file.matrix.export);
+        console.log(matrix.getMatrix());
+        console.log(matrix.createConvolution(2, 2, matrix.getMatrix()));
+        this.rl.close();
+
+        // this.rl.question('.:: Its conway game off life \n You want use config.json? \n Press y/n \n' , (answer) => {
+        //     if (answer === 'y') {
+        //         console.log(`Starting from config.json`);
+        //     } else {
+        //         console.log(`Generate new board`);
+        //     }
+        //     this.rl.close();
+        // });
+    }
+}
