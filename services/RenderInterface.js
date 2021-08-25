@@ -16,22 +16,34 @@ export default class RenderInterface
         });
 
         const matrix = new MatrixAdapter();
-        const cell = new Cell();
         matrix.setMatrix(file.matrix.export);
-        const matrixArr = matrix.getMatrix();
-        const scope = matrix.addScopeMatrix(0, 0, matrixArr);
-        console.log(
-            cell.LiveNearby.check(scope)
-        )
+        console.info(matrix.getMatrix())
+        console.info("\n Result: \n");
+        this.LifeCycle(matrix, 10);
         this.rl.close();
+    }
 
-        // this.rl.question('.:: Its conway game off life \n You want use config.json? \n Press y/n \n' , (answer) => {
-        //     if (answer === 'y') {
-        //         console.log(`Starting from config.json`);
-        //     } else {
-        //         console.log(`Generate new board`);
-        //     }
-        //     this.rl.close();
-        // });
+    LifeCycle(matrix, count) {
+        while (count !== 0) {
+            let cycle = [];
+            let statistics = { live: 0, dead: 0 }
+            let matrixArr = matrix.getMatrix();
+            for (let y = 0; y < matrixArr.length; y++) {
+                cycle[y] = new Array();
+                for (let x = 0; x < matrixArr[y].length; x++) {
+                    let scope = matrix.addScopeMatrix(x, y, matrixArr);
+                    let cell = new Cell();
+                    cycle[y].push(cell.LiveNearby.check(scope));
+                    if (cell.LiveNearby.check(scope) === 1) {
+                        statistics.live++;
+                    } else {
+                        statistics.dead++;
+                    }
+                }
+            }
+            console.log(statistics);
+            matrix.setMatrix(cycle);
+            count--;
+        }
     }
 }
