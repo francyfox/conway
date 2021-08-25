@@ -7,9 +7,7 @@ export default class Board extends Cell
     }
 
     addMatrixByRandom(M, N) {
-        let i = 0;
-        const RowArray = Array.from({length: M}, () => ++i);
-        // Math.floor(Math.random() * 2)
+        const RowArray = Array.from({length: M}, () => Math.floor(Math.random() * 2));
         this.matrix = new Array(N).fill(RowArray);
     }
 

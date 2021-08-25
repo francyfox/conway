@@ -1,5 +1,6 @@
 import MatrixAdapter from './MatrixAdapter.js'
 import { createRequire } from "module";
+import Cell from "../models/Cell.js";
 const require = createRequire(import.meta.url);
 
 const file = require('../config.json');
@@ -15,9 +16,13 @@ export default class RenderInterface
         });
 
         const matrix = new MatrixAdapter();
+        const cell = new Cell();
         matrix.setMatrix(file.matrix.export);
-        console.log(matrix.getMatrix());
-        console.log(matrix.addScopeMatrix(0, 0, matrix.getMatrix()));
+        const matrixArr = matrix.getMatrix();
+        const scope = matrix.addScopeMatrix(0, 0, matrixArr);
+        console.log(
+            cell.LiveNearby.check(scope)
+        )
         this.rl.close();
 
         // this.rl.question('.:: Its conway game off life \n You want use config.json? \n Press y/n \n' , (answer) => {
