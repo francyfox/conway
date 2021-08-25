@@ -17,7 +17,7 @@ export default class RenderInterface
         const matrix = new MatrixAdapter();
         matrix.setMatrix(file.matrix.export);
         console.log(matrix.getMatrix());
-        console.log(matrix.createConvolution(2, 2, matrix.getMatrix()));
+        console.log(matrix.addScopeMatrix(0, 0, matrix.getMatrix()));
         this.rl.close();
 
         // this.rl.question('.:: Its conway game off life \n You want use config.json? \n Press y/n \n' , (answer) => {
